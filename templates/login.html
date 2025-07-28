@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block login %}{% endblock login %}
+
+{% block body %}
+    {% if not session['logged in'] %}  
+    <div class="container my-5"></div>
+        <div class="container mx-auto p-2 text-bg-dark p-3 rounded-4 w-50 min-vw-50">            
+            <form action="{{url_for('login')}}" method="post">
+                {% if msg=='Invalid Credentials!' %}
+                    <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                        <p class="fw-bold fs-3" style="margin-block: -1rem;">{{msg}}</p>
+                        <button type="button" class="btn-close" style=" padding-bottom: 0.65rem;" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% else %}
+                    {% if msg %}
+                    <div class="alert alert-success text-center"><p class="fs-3">{{msg}}</p></div> 
+                    {% endif %}
+                {% endif %}
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="name@ecample.com" required>
+                    <label for="username" class="form-label">USERNAME</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+                    <label for="password" class="form-label">PASSWORD</label>
+                </div>
+                <div class="container d-grid gap-2 col-6 mx-auto"> 
+                    <button type="submit" class="btn btn-outline-primary rounded-4">Login</button>
+                </div>
+                <div class="container pt-3 text-center">
+                    <p>Not an Existing User? <a href="{{url_for('register')}}" class="link-body">Register Now!</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    
+{% endblock body %}

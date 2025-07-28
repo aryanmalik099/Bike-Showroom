@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Edit Bike{% endblock title %}
+{% block body %}
+    <div class="position-fixed top-50 start-50 translate-middle bg-white border rounded shadow p-3" style="width: 80%; max-width: 600px; z-index: 1050;">
+        <form action="/edit_bike/{{bike[0]}}" method="POST" class="row g-3">
+            <div>
+                <label for="make" class="form-label fs-5">Make</label>
+                <input type="text" class="form-control" id="make" name="make" value="{{bike[1]}}" required>
+            </div>
+            <div>
+                <label for="model" class="form-label fs-5">Model</label>
+                <input type="text" class="form-control" id="model" name="model" value="{{bike[2]}}" required>
+            </div>
+            <div>
+                <label for="year" class="form-label fs-5">Year</label>
+                <input type="number" class="form-control" id="year" name="year" min="2010" max="2025" value="{{bike[3]}}" required>
+            </div>
+            <div>
+                <label for="price" class="form-label fs-5">Price</label>
+                <input type="number" class="form-control" id="price" step="0.01" min="0" name="price" value="{{bike[4]}}" required>
+            </div>
+            <div>
+                <label for="stock" class="form-label fs-5">Stock</label>
+                <input type="number" class="form-control" id="stock" min="0" name="stock" value="{{bike[5]}}" required>
+            </div>
+            <div class="container d-grid gap-2 my-1 mx-auto col-sm-7"> 
+                <button type="submit" class="btn btn-outline-success rounded-4">Save Changes</button>
+            </div>
+            <div class="container d-grid gap-2 col-6 mx-auto col-sm-7"> 
+                <a href="{{url_for('owner')}}" class="btn btn-outline-danger rounded-4">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock body %}
